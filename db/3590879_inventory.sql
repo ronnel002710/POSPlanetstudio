@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2022 at 04:44 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: May 20, 2024 at 09:51 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -35,7 +34,7 @@ CREATE TABLE `cashier` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `status` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `cashier`
@@ -43,7 +42,8 @@ CREATE TABLE `cashier` (
 
 INSERT INTO `cashier` (`cashier_id`, `cashier_name`, `position`, `username`, `password`, `status`) VALUES
 (1, 'Andres P. Jario', 'cashier', 'cashier', 'cashier', 'Active'),
-(14, 'Crischel T. Amorio', 'Cashier', 'crischel', 'demo123', 'Active');
+(14, 'Crischel T. Amorio', 'Cashier', 'crischel', 'demo123', 'Active'),
+(15, 'Charlotte Ayala', 'Cashier', 'Mollit harum in dolo', 'Pa$$w0rd!', 'DeActive');
 
 -- --------------------------------------------------------
 
@@ -54,7 +54,7 @@ INSERT INTO `cashier` (`cashier_id`, `cashier_name`, `position`, `username`, `pa
 CREATE TABLE `category` (
   `cat_id` int(11) NOT NULL,
   `cat_name` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
@@ -105,7 +105,7 @@ CREATE TABLE `collection` (
   `amount` varchar(100) NOT NULL,
   `remarks` varchar(100) NOT NULL,
   `balance` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,16 @@ CREATE TABLE `customer` (
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `customer_name`, `address`, `contact`, `membership_number`, `first_name`, `middle_name`, `last_name`) VALUES
+(1, 'Jermaine Baldwin Shelley Banks Urielle Washington', 'Nam soluta accusamus', 'Delectus in magnam ', '', 'Jermaine Baldwin', 'Shelley Banks', 'Urielle Washington'),
+(2, 'Lionel Romero Amal Blanchard Valentine Park', 'Ea quis alias hic vo', 'Et consequatur alias', '', 'Lionel Romero', 'Amal Blanchard', 'Valentine Park'),
+(3, 'Ivor Battle Shea Baxter Deanna Lawrence', 'Qui dolores repellen', 'Aspernatur qui iusto', '', 'Ivor Battle', 'Shea Baxter', 'Deanna Lawrence');
 
 -- --------------------------------------------------------
 
@@ -141,7 +150,7 @@ CREATE TABLE `lose` (
   `date` varchar(30) NOT NULL,
   `category` varchar(20) NOT NULL,
   `exdate` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -162,16 +171,16 @@ CREATE TABLE `products` (
   `category` varchar(100) NOT NULL,
   `date_delivered` varchar(20) NOT NULL,
   `expiration_date` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`product_id`, `product_code`, `product_name`, `description_name`, `unit`, `cost`, `price`, `supplier`, `qty_left`, `category`, `date_delivered`, `expiration_date`) VALUES
-(1, 'P007550', 'Honda', 'Ammeter', 'Per Pieces', '300', '350', 'Andres Auto Parts', 50, 'Gauges and meters', '2020-09-12', ''),
-(2, 'P003012', 'Honda', 'Clinometer', 'Per Pieces', '300', '350', 'Andres Auto Parts', 1350, 'Gauges and meters', '2020-09-12', '2020-09-15'),
-(3, 'P00627', 'Honda', 'Dynamometer', 'Per Pieces', '500', '600', 'Others', 10, 'Gauges and meters', '2020-09-11', ''),
+(1, 'P007550', 'Honda', 'Ammeter', 'Per Pieces', '300', '350', 'Andres Auto Parts', 49, 'Gauges and meters', '2020-09-12', ''),
+(2, 'P003012', 'Honda', 'Clinometer', 'Per Pieces', '300', '350', 'Andres Auto Parts', 1341, 'Gauges and meters', '2020-09-12', '2020-09-15'),
+(3, 'P00627', 'Honda', 'Dynamometer', 'Per Pieces', '500', '600', 'Others', 9, 'Gauges and meters', '2020-09-11', ''),
 (5, 'PC4711998', 'zuzuki', 'Anti-intrusion bar', 'Per Pieces', '500', '600', 'Cebu Massive Auto Parts, Inc.', 18, 'Doors', '2020-09-16', ''),
 (6, 'PC6108219', 'Honda', 'Outer door handle', 'Per Pieces', '500', '600', 'ILOILO AUTO SUPPLY', 20, 'Doors', '2020-09-16', ''),
 (7, 'PC7491130', 'Honda', 'Inner door handle', 'Per Pieces', '300', '350', 'ILOILO AUTO SUPPLY', 43, 'Doors', '2020-09-16', ''),
@@ -191,7 +200,7 @@ INSERT INTO `products` (`product_id`, `product_code`, `product_name`, `descripti
 CREATE TABLE `product_unit` (
   `unit_id` int(11) NOT NULL,
   `unit` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_unit`
@@ -219,7 +228,7 @@ CREATE TABLE `purchases` (
   `status` varchar(25) NOT NULL,
   `remark` varchar(100) NOT NULL,
   `date_recieved` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `purchases`
@@ -245,7 +254,7 @@ CREATE TABLE `purchases_item` (
   `invoice` varchar(100) NOT NULL,
   `status` varchar(25) NOT NULL,
   `date` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `purchases_item`
@@ -284,7 +293,7 @@ CREATE TABLE `sales` (
   `year` varchar(20) NOT NULL,
   `p_amount` varchar(30) NOT NULL,
   `vat` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sales`
@@ -301,7 +310,9 @@ INSERT INTO `sales` (`transaction_id`, `invoice_number`, `cashier`, `date`, `typ
 (69, 'IN0021827442', 'Crischel T. Amorio', '2021-10-11', 'cash', '350', '', '', '', '', '500', 'October', '2021', '350', '0'),
 (70, 'IN008047785', 'Andres P. Jario', '2022-02-01', 'cash', '1900', '', '', '', '', '2000', 'January', '2022', '1900', '0'),
 (71, 'IN008047785', 'Andres P. Jario', '2022-02-02', 'cash', '1900', '', '', '', '', '2000', 'January', '2022', '1900', '0'),
-(72, 'IN00539664865', 'Andres P. Jario', '2022-02-01', 'cash', '350', '', '', '', '', '500', 'February', '2022', '350', '0');
+(72, 'IN00539664865', 'Andres P. Jario', '2022-02-01', 'cash', '350', '', '', '', '', '500', 'February', '2022', '350', '0'),
+(73, 'IN00479566477', 'Andres P. Jario', '2024-05-20', 'cash', '700', '', '', '', '', '700', 'May', '2024', '700', '0'),
+(74, 'IN003166640', 'Andres P. Jario', '2024-05-20', 'cash', '350', '', '', '', '', '350', 'May', '2024', '350', '0');
 
 -- --------------------------------------------------------
 
@@ -325,26 +336,30 @@ CREATE TABLE `sales_order` (
   `qtyleft` varchar(25) NOT NULL,
   `dname` varchar(50) NOT NULL,
   `vat` varchar(20) NOT NULL,
-  `total_amount` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `total_amount` varchar(30) NOT NULL,
+  `customer_name` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sales_order`
 --
 
-INSERT INTO `sales_order` (`transaction_id`, `invoice`, `product`, `qty`, `amount`, `name`, `price`, `discount`, `category`, `date`, `omonth`, `oyear`, `qtyleft`, `dname`, `vat`, `total_amount`) VALUES
-(80, 'IN00977062541', 'PC7491130', '1', '350', 'Honda', '350', '0', 'Doors', '2020-09-23', 'September', '2020', '44', 'Inner door handle', '0', '350'),
-(81, 'IN00276021430', 'PC5896113', '1', '1300', 'zuzuki', '1300', '0', 'Doors', '2020-09-23', 'September', '2020', '49', 'Door control module', '0', '1300'),
-(82, 'IN00333801463', 'PC4711998', '2', '1200', 'zuzuki', '600', '0', 'Doors', '2020-09-23', 'September', '2020', '18', 'Anti-intrusion bar', '0', '1200'),
-(83, 'IN0002366656', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2020-09-23', 'September', '2020', '34', 'Ammeter', '0', '350'),
-(84, 'IN0049787246', 'PC7491130', '1', '350', 'Honda', '350', '0', 'Doors', '2020-09-24', 'September', '2020', '43', 'Inner door handle', '0', '350'),
-(85, 'IN00403025933', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2020-09-25', 'September', '2020', '37', 'Ammeter', '0', '350'),
-(86, 'IN00751064491', 'P003012', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2020-09-26', 'September', '2020', '13', 'Clinometer', '0', '350'),
-(87, 'IN0021827442', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2021-10-11', 'October', '2021', '37', 'Ammeter', '0', '350'),
-(88, 'IN008047785', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2022-01-31', 'January', '2022', '36', 'Ammeter', '0', '350'),
-(89, 'IN008047785', 'P003012', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2022-01-31', 'January', '2022', '1350', 'Clinometer', '0', '350'),
-(90, 'IN008047785', 'P00627', '2', '1200', 'Honda', '600', '0', 'Gauges and meters', '2022-01-31', 'January', '2022', '10', 'Dynamometer', '0', '1200'),
-(91, 'IN00539664865', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2022-02-01', 'February', '2022', '50', 'Ammeter', '0', '350');
+INSERT INTO `sales_order` (`transaction_id`, `invoice`, `product`, `qty`, `amount`, `name`, `price`, `discount`, `category`, `date`, `omonth`, `oyear`, `qtyleft`, `dname`, `vat`, `total_amount`, `customer_name`) VALUES
+(80, 'IN00977062541', 'PC7491130', '1', '350', 'Honda', '350', '0', 'Doors', '2020-09-23', 'September', '2020', '44', 'Inner door handle', '0', '350', NULL),
+(81, 'IN00276021430', 'PC5896113', '1', '1300', 'zuzuki', '1300', '0', 'Doors', '2020-09-23', 'September', '2020', '49', 'Door control module', '0', '1300', NULL),
+(82, 'IN00333801463', 'PC4711998', '2', '1200', 'zuzuki', '600', '0', 'Doors', '2020-09-23', 'September', '2020', '18', 'Anti-intrusion bar', '0', '1200', NULL),
+(83, 'IN0002366656', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2020-09-23', 'September', '2020', '34', 'Ammeter', '0', '350', NULL),
+(84, 'IN0049787246', 'PC7491130', '1', '350', 'Honda', '350', '0', 'Doors', '2020-09-24', 'September', '2020', '43', 'Inner door handle', '0', '350', NULL),
+(85, 'IN00403025933', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2020-09-25', 'September', '2020', '37', 'Ammeter', '0', '350', NULL),
+(86, 'IN00751064491', 'P003012', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2020-09-26', 'September', '2020', '13', 'Clinometer', '0', '350', NULL),
+(87, 'IN0021827442', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2021-10-11', 'October', '2021', '37', 'Ammeter', '0', '350', NULL),
+(88, 'IN008047785', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2022-01-31', 'January', '2022', '36', 'Ammeter', '0', '350', NULL),
+(89, 'IN008047785', 'P003012', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2022-01-31', 'January', '2022', '1350', 'Clinometer', '0', '350', NULL),
+(90, 'IN008047785', 'P00627', '2', '1200', 'Honda', '600', '0', 'Gauges and meters', '2022-01-31', 'January', '2022', '10', 'Dynamometer', '0', '1200', NULL),
+(91, 'IN00539664865', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2022-02-01', 'February', '2022', '50', 'Ammeter', '0', '350', NULL),
+(92, 'IN00479566477', 'P003012', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2024-05-20', 'May', '2024', '1342', 'Clinometer', '0', '350', 'Jermaine Baldwin Shelley Banks Urielle Washington'),
+(93, 'IN00479566477', 'P003012', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2024-05-20', 'May', '2024', '1341', 'Clinometer', '0', '350', NULL),
+(94, 'IN003166640', 'P007550', '1', '350', 'Honda', '350', '0', 'Gauges and meters', '2024-05-20', 'May', '2024', '49', 'Ammeter', '0', '350', 'Jermaine Baldwin Shelley Banks Urielle Washington');
 
 -- --------------------------------------------------------
 
@@ -358,7 +373,7 @@ CREATE TABLE `supliers` (
   `suplier_address` varchar(100) NOT NULL,
   `suplier_contact` varchar(100) NOT NULL,
   `contact_person` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `supliers`
@@ -393,14 +408,16 @@ CREATE TABLE `user` (
   `profile` text NOT NULL,
   `firstname` varchar(250) NOT NULL,
   `lastname` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `name`, `role`, `profile`, `firstname`, `lastname`) VALUES
-(1, 'admin', 'demo123', 'Admin', 'Admin', '', 'Andres ', 'Jario');
+(1, 'admin', 'demo123', 'Admin', 'Admin', '', 'Andres ', 'Jario'),
+(2, 'ronnel', '123456', '', 'Admin', '', 'ronnel', ''),
+(3, 'Quoved', 'Pa$$w0rd!', '', 'Admin', '', 'Christopher Skinner', '');
 
 -- --------------------------------------------------------
 
@@ -411,7 +428,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `name`, `role`, `profile`, `fi
 CREATE TABLE `vat_table` (
   `vatid` int(11) NOT NULL,
   `vat` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vat_table`
@@ -516,7 +533,7 @@ ALTER TABLE `vat_table`
 -- AUTO_INCREMENT for table `cashier`
 --
 ALTER TABLE `cashier`
-  MODIFY `cashier_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `cashier_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -534,7 +551,7 @@ ALTER TABLE `collection`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `lose`
@@ -570,13 +587,13 @@ ALTER TABLE `purchases_item`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `sales_order`
 --
 ALTER TABLE `sales_order`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `supliers`
@@ -588,7 +605,7 @@ ALTER TABLE `supliers`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `vat_table`
