@@ -82,10 +82,12 @@ require_once('auth.php');
                 <option>Select Customer</option>
                 
                 <?php
+              
                 include('connect.php');
                 $result = $db->prepare("SELECT * FROM customer");
-                $result->bindParam(':userid', $res);
+                   var_dump($result);
                 $result->execute();
+
                 for($i=0; $row = $result->fetch(); $i++){
                   ?>
                   <option value="<?php echo $row['customer_name'];?>" 
@@ -106,7 +108,7 @@ require_once('auth.php');
                 <?php
                 include('connect.php');
                 $result = $db->prepare("SELECT * FROM products");
-                $result->bindParam(':userid', $res);
+
                 $result->execute();
                 for($i=0; $row = $result->fetch(); $i++){
                   ?>

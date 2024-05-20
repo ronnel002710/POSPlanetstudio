@@ -11,7 +11,7 @@ $month = date('F');
 $year = date('Y');
 $p = $_POST['customers'];
 
-$customer_name= $_POST['customer_name'];
+
 $result = $db->prepare("SELECT * FROM customer WHERE customer_name= :userid");
 $result->bindParam(':userid', $p);
 $result->execute();

@@ -9,14 +9,13 @@
 				$a = $_POST['user'];
 				$b = $_POST['pass'];
 				$c = $_POST['name'];
-				$d = "Deactive";	
 				$sql = "SELECT * FROM user WHERE username = '$a'";
 				$query = $conn->query($sql);
 				if($query->num_rows > 0){
 					$_SESSION['error'] = "New username  was already exist!";
 				}
 				else{
-					$sql = "INSERT INTO user (username,password,firstname,status) VALUES ('$a','$b','$c','$d')";
+					$sql = "INSERT INTO user (username,password,firstname,role) VALUES ('$a','$b','$c','Admin')";
 					if($conn->query($sql)){
 						$_SESSION['success'] = 'New username added successfully';
 					}

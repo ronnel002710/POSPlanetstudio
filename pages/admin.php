@@ -74,7 +74,7 @@ require_once('auth.php');
                                 <th> Name</th>
                                 <th> Username</th>
                                 <th> Password</th>
-                                <th> Status</th>
+
                                 <th> Tools </th>
                             </tr>
                         </thead>
@@ -89,7 +89,7 @@ require_once('auth.php');
 									<td><?php echo $row->firstname; ?></td>
 									<td><?php echo $row->username; ?></td>
 									<td><?php echo $row->password; ?></td>
-									<td><?php echo $row->status; ?></td>
+
 									<td>
 										<a href="admin_update.php?id=<?php echo $row->id; ?>"
 										class="btn btn-info btn-sm" name="btn_edit"><i class="fa fa-pencil"></i></a>

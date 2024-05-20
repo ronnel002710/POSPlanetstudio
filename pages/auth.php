@@ -14,11 +14,12 @@
 	$query = $db->prepare("SELECT * FROM user WHERE id = ?");
 	$query->execute(array($session_id));
 	$row = $query->fetch();
-
 	$session_admin_name = $row['name'];
 	$userprofile = $row['profile'];
 	$fname = $row['firstname'];
-	$status = $row['status'];
+    if($row['role'] !== 'Admin'){
+		$status = $row['status'];
+	}
 	$password = $row['password'];
 	$role = $row['role'];
 ?>
