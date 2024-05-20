@@ -16,9 +16,9 @@
 <input type="hidden" name="ptype" value="<?php echo $_GET['pt']; ?>" />
 <input type="hidden" name="cashier" value="<?php echo $_GET['cashier']; ?>" />
 <input type="hidden" name="p_amount" value="<?php echo $_GET['p_amount']; ?>" />
-<input type="hidden" name="customers" value="<?php echo $_GET['customers']; ?>" />
+<!-- <input type="hidden" name="customers" value="<?php echo $_GET['customers']; ?>" />
 <input type="hidden" name="pt" class = "form-control" value="<?php echo $_GET['id']; ?>" />
-            
+             -->
 
 <?php
 $asas=$_GET['pt'];

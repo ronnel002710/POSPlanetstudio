@@ -1,5 +1,6 @@
 
         <!-- jQuery -->
+        
         <script src="../vendor/jquery/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
@@ -17,8 +18,42 @@
 		
         <script src="../vendor/Export-Data/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="../vendor/Export-Data/jquery-ui.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="js/basicLightbox.min.js"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/notiflix@3.2.7/src/notiflix.min.css
+" rel="stylesheet">
         <script>
             $(document).ready(function() {
+                const qrcode = document.querySelectorAll('.barcode');
+            const qrClick = document.querySelector('tbody');
+      console.log(barcode);
+      barcode.forEach(function(item) {
+        var dataValue = item.getAttribute('data-barcode');
+
+        var options = {
+          text: dataValue,
+          width: 50,
+          height: 50,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.L
+        };
+        var qrCode = new QRCode(item, options);
+
+        console.log(qrCode);
+
+      });
+
+
+
+
+
+
                 $('#dataTables-example').DataTable({
                     responsive: true
                 });

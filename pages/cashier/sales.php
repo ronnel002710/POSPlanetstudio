@@ -102,9 +102,13 @@ require_once('auth.php');
               </select>
 		  </div>
 		  <div class="form-group">
+        
 			<label for="email">SELECT PRODUCT:</label>
-			<select  name="product" class="chzn-select form-control" required>
+      <div id="reader"></div>
+      <div id="result"></div>
+			<select  name="product" id="product" class="form-control" required>
                 <option></option>
+
                 <?php
                 include('connect.php');
                 $result = $db->prepare("SELECT * FROM products");
@@ -303,11 +307,75 @@ require_once('auth.php');
 
       <link href="vendor/chosen.min.css" rel="stylesheet" media="screen">
       <script src="vendor/chosen.jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script>
         $(function() {
-          $(".chzn-select").chosen();
-
+          // $(".chzn-select").chosen();
+        
+         
         });
+        $("#product").chosen();
+        // $("#product").chosen().destroy();
+        const scanner = new Html5QrcodeScanner('reader', {
+      // Scanner will be initialized in DOM inside element with id of 'reader'
+      qrbox: {
+        width: 350,
+        height: 350,
+      }, // Sets dimensions of scanning box (set relative to reader element width)
+      fps: 20, // Frames per second to attempt a scan
+    });
+
+
+    scanner.render(success, error);
+    // Starts scanner
+
+    function success(result) {
+
+   
+    
+        console.log(result);
+        selectOption(result,'product');
+
+
+
+
+      // Removes reader element from DOM since no longer needed
+
+    }
+
+    function error(err) {
+      // Notiflix.Notify.failure('Something Went Wrong Please try again');
+
+    }
+    function selectOption(result, selectElementId) {
+  // Get the select element by its ID
+
+  const selectElement = document.getElementById(selectElementId);
+
+  // Check if the select element exists
+  if (selectElement) {
+    // Get all option elements inside the select element
+    const options = selectElement.options;
+
+    // Loop through all options
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+
+      // Check if the option value matches the result
+      if (option.value === result) {
+        console.log(result);
+       
+        option.setAttribute('selected', '');
+        console.log(option.selected);
+        // $("#product").trigger('chosen:updated')
+        $("#product").trigger("liszt:updated");
+        break; // Exit the loop since we found the match
+      }
+    }
+  } else {
+    console.error(`Select element with ID "${selectElementId}" not found.`);
+  }
+}
       </script>
 
     </body>
