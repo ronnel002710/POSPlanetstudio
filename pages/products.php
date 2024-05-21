@@ -232,6 +232,9 @@ function svgToImage(svgElement, imageType, callback) {
 			});
 
 		});
+
+	
+	
 	</script>
 	<?php include 'addproduct.php'; ?>
 	<!-- <?php include "footer.html"; ?> -->
